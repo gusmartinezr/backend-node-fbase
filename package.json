@@ -1,12 +1,12 @@
 {
   "name": "backend-nodejs-fbase",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/app.js",
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --clear src/app.ts",
     "build": "rimraf ./dist && tsc",
-    "start": "npm run build && node dist/app.js"
+    "start": "node dist/app.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
