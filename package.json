@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --clear src/app.ts",
-    "build": "rimraf ./dist && tsc",
+    "build": "rm ./dist && tsc",
     "start": "node dist/app.js"
   },
   "devDependencies": {
