@@ -4,7 +4,9 @@ import { envs } from "./config/envs";
 import "dotenv/config";
 import { Server } from "./presentation/server";
 import admin from "firebase-admin";
-import serviceAccount from "../serviceAccountKey.json";
+// import serviceAccount from "../serviceAccountKey.json";
+
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_PATH!);
 
 // Inicializa Firebase Admin SOLO aquí
 if (!admin.apps.length) {
