@@ -8,6 +8,8 @@ import admin from "firebase-admin";
 
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_PATH!);
 
+serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+
 // Inicializa Firebase Admin SOLO aquí
 if (!admin.apps.length) {
   admin.initializeApp({
