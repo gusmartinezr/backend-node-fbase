@@ -6,3 +6,5 @@ node_modules/
 
 # Google Cloud credentials
 serviceAccountKey.json
+
+dist/
