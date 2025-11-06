@@ -1,10 +1,16 @@
+# Node
 node_modules/
-.env
+lib/
+dist/
 
-# Environment variables
+# Credenciales y env
 .env
-
-# Google Cloud credentials
 serviceAccountKey.json
 
-dist/
+# Firebase
+firebase-debug.log
+firebase-debug.*.log
+
+# Misceláneos
+*.local
+.DS_Store
