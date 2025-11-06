@@ -1,4 +1,6 @@
 import admin from "firebase-admin";
+import fs from "fs";
+import path from "path";
 import { envs } from "./envs";
 
 export default class FirebaseSingleton {
@@ -6,9 +8,19 @@ export default class FirebaseSingleton {
 
   static getInstance(): admin.app.App {
     if (!FirebaseSingleton.instance) {
+      // Leer el JSON del service account
+      const serviceAccountPath = path.resolve(envs.FIREBASE_SERVICE_ACCOUNT_PATH);
+      const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf8"));
+
+      // Inicializar Firebase reemplazando saltos de línea
       FirebaseSingleton.instance = admin.initializeApp({
-        credential: admin.credential.cert(envs.FIREBASE_SERVICE_ACCOUNT_PATH as admin.ServiceAccount),
+        credential: admin.credential.cert({
+          projectId: serviceAccount.project_id,
+          clientEmail: serviceAccount.client_email,
+          privateKey: serviceAccount.private_key.replace(/\\n/g, "\n"), // <- importante
+        }),
       });
+
       console.log("Firebase initialized successfully (singleton)");
     }
     return FirebaseSingleton.instance;
