@@ -8,11 +8,9 @@ export default class FirebaseSingleton {
 
   static getInstance(): admin.app.App {
     if (!FirebaseSingleton.instance) {
-      // Leer el JSON del service account
       const serviceAccountPath = path.resolve(envs.FIREBASE_SERVICE_ACCOUNT_PATH);
       const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf8"));
 
-      // Inicializar Firebase reemplazando saltos de línea
       FirebaseSingleton.instance = admin.initializeApp({
         credential: admin.credential.cert({
           projectId: serviceAccount.project_id,
