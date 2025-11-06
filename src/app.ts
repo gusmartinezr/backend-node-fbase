@@ -6,7 +6,6 @@ import { Server } from "./presentation/server";
 import admin from "firebase-admin";
 import serviceAccount from "../serviceAccountKey.json";
 
-// Inicializa Firebase Admin SOLO aquí
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
@@ -18,7 +17,6 @@ if (!admin.apps.length) {
 })();
 
 async function main() {
-  // Solo conecta a Firestore, NO inicialices aquí con credenciales
   FirestoreDatabase.connect();
   const server = new Server({ port: envs.PORT, routes: AppRoutes.routes });
   server.start();
